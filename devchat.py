@@ -6,12 +6,10 @@ from llama_index.llms.ollama import Ollama
 from llama_index.core.settings import Settings
 import subprocess
 
-# Initialisation
 console = Console()
 DATA_DIR = "code_docs"
 MODEL_NAME = "deepseek-r1:8b"
 
-# Vérifie si le dossier existe
 if not os.path.exists(DATA_DIR):
     console.print(f"[bold red]Le dossier '{DATA_DIR}' n'existe pas. Crée-le et ajoute tes fichiers de code/doc dedans.[/bold red]")
     exit()
@@ -27,21 +25,18 @@ if not check_model_installed(MODEL_NAME):
     console.print(f"[bold red]Le modèle '{MODEL_NAME}' n'a pas été trouvé localement. Tentative de téléchargement...[/bold red]")
     subprocess.run(["ollama", "pull", MODEL_NAME])
 
-# Chargement des documents
 console.print("[bold green]Chargement des fichiers...[/bold green]")
 documents = SimpleDirectoryReader(DATA_DIR).load_data()
 
-# Connexion au modèle Ollama
 console.print("[bold cyan]Connexion au modèle local...[/bold cyan]")
 llm = Ollama(model=MODEL_NAME)
 
-# Forcer l'utilisation d'un embedding local pur sans HuggingFace ou OpenAI
-Settings.embed_model = None  # Cela devrait désactiver toute dépendance externe pour les embeddings
+# Pour ne pas utiliser openai ou hugginface etc...
+Settings.embed_model = None
 
 # Création de l’index vectoriel
 index = VectorStoreIndex.from_documents(documents)
 
-# Moteur de recherche avec un prompt spécialisé dev
 query_engine = index.as_query_engine(
     llm=llm,
     system_prompt=(
