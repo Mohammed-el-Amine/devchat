@@ -1,14 +1,42 @@
 #!/bin/bash
 
-# Vérifier si le dossier dev-chat existe
-if [ ! -d "/home/amine/Bureau/devchat/dev-chat" ]; then
-    # Si le dossier n'existe pas, créer l'environnement virtuel
-    python3 -m venv /home/amine/Bureau/devchat/dev-chat
+# Définir les chemins
+PROJECT_DIR="$HOME/Bureau/devchat"
+VENV_DIR="$PROJECT_DIR/dev-chat"
+PYTHON_SCRIPT="$PROJECT_DIR/devchat.py"
+
+# Liste des dépendances requises
+REQUIRED_PACKAGES=("llama-index" "llama-index-llms-ollama" "rich")
+
+# Fonction pour vérifier si toutes les dépendances sont installées
+check_dependencies() {
+    for package in "${REQUIRED_PACKAGES[@]}"; do
+        if ! "$VENV_DIR/bin/pip" show "$package" &> /dev/null; then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Créer l'environnement virtuel si nécessaire
+if [ ! -d "$VENV_DIR" ]; then
+    echo "[*] Environnement virtuel non trouvé. Création..."
+    python3 -m venv "$VENV_DIR"
 fi
 
-# Activer l'environnement virtuel
-source /home/amine/Bureau/devchat/dev-chat/bin/activate
+# Activer l'environnement
+source "$VENV_DIR/bin/activate"
 
-# Lancer le script Python dans un nouveau terminal GNOME
-#gnome-terminal -- bash -c "python3 /home/amine/Bureau/devchat/devchat.py; exec bash"
-python3 /home/amine/Bureau/devchat/devchat.py
+# Vérifier et installer les dépendances si besoin
+if check_dependencies; then
+    echo "[*] Dépendances déjà installées. Lancement de l'application..."
+else
+    echo "[*] Installation des dépendances manquantes..."
+    pip install --upgrade pip
+    pip install "${REQUIRED_PACKAGES[@]}"
+fi
+
+# Lancer le script
+echo "[*] Exécution de devchat.py..."
+python3 "$PYTHON_SCRIPT"
+
