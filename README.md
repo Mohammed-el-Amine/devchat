@@ -24,6 +24,7 @@ pip install llama-index llama-index-llms-ollama rich
 ```
 ton-projet/
 ├── devchat.py
+├── lancement.sh
 └── code_docs/
     ├── DOCKER.md
     ├── react_patterns.md
@@ -49,6 +50,8 @@ ton-projet/
 
 ```bash
 python devchat.py
+# OU
+./lancement.sh
 ```
 
 ---
