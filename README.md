@@ -12,7 +12,7 @@ Créer un petit **chat CLI local** spécialisé pour le développement avec un m
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 python3 -m venv dev-chat
-source devchat/bin/activate
+source dev-chat/bin/activate
 pip install --upgrade pip
 pip install llama-index llama-index-llms-ollama rich
 ```
