@@ -53,7 +53,7 @@ while True:
             console.print("[bold yellow]À bientôt ![/bold yellow]")
         try:
             console.print("[bold cyan]Arrêt du modèle Ollama...[/bold cyan]")
-            subprocess.run(["ollama", "stop", MODEL_NAME], check=True)  # Utilisation de check=True pour vérifier l'exécution correcte de la commande
+            subprocess.run(["ollama", "stop", MODEL_NAME], check=True)
             break
         except subprocess.CalledProcessError as e:
             console.print(f"[bold red]Erreur lors de l'arrêt du modèle : {e}[/bold red]")
