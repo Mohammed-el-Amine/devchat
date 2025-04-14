@@ -10,6 +10,7 @@ Créer un petit **chat CLI local** spécialisé pour le développement avec un m
 ## 🛠️ Dépendances à installer
 
 ```bash
+curl -fsSL https://ollama.com/install.sh | sh
 python3 -m venv dev-chat
 source devchat/bin/activate
 pip install --upgrade pip
