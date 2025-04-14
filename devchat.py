@@ -51,6 +51,12 @@ while True:
         user_input = Prompt.ask("[bold blue]Dev >[/bold blue]")
         if user_input.lower() in ("exit", "quit", "q"):
             console.print("[bold yellow]À bientôt ![/bold yellow]")
+        try:
+            console.print("[bold cyan]Arrêt du modèle Ollama...[/bold cyan]")
+            subprocess.run(["ollama", "stop", MODEL_NAME], check=True)  # Utilisation de check=True pour vérifier l'exécution correcte de la commande
+            break
+        except subprocess.CalledProcessError as e:
+            console.print(f"[bold red]Erreur lors de l'arrêt du modèle : {e}[/bold red]")
             break
 
         response = query_engine.query(user_input)
