@@ -133,6 +133,6 @@ Maintenant, vous êtes prêt à utiliser le chat avec un historique sauvegardé 
 ```
 # Si gcc n'est pas installer:
 # sudo apt install gcc
-gcc -o /home/amine/Bureau/devchat/lancement wrapper.c   #création du fichier lancement executable (double clique)
+gcc -o ~/Bureau/devchat/lancement wrapper.c   #création du fichier lancement executable (double clique)
 
 ```
