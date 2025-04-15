@@ -10,7 +10,7 @@ load_dotenv()
 
 console = Console()
 MODEL_NAME = "deepseek-coder:6.7b"
-db_user = os.getenv("DB_USER")
+db_user = os.getenv("DB_USER").capitalize()
 
 # Connexion à la BDD
 def connect_to_db():
