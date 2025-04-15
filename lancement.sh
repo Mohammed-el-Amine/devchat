@@ -4,7 +4,7 @@ PROJECT_DIR="$HOME/Bureau/devchat"
 VENV_DIR="$PROJECT_DIR/dev-chat"
 PYTHON_SCRIPT="$PROJECT_DIR/devchat.py"
 
-REQUIRED_PACKAGES=("llama-index" "llama-index-llms-ollama" "rich")
+REQUIRED_PACKAGES=("llama-index" "llama-index-llms-ollama" "rich" "mysql-connector-python" "python-dotenv")
 
 check_dependencies() {
     for package in "${REQUIRED_PACKAGES[@]}"; do
@@ -34,4 +34,3 @@ clear
 
 echo "[*] Exécution de devchat.py..."
 python3 "$PYTHON_SCRIPT"
-
