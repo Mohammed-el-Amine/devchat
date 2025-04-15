@@ -33,4 +33,4 @@ fi
 clear
 
 echo "[*] Exécution de devchat.py..."
-gnome-terminal -- bash -c "python3 /home/amine/Bureau/devchat/devchat.py; exec bash"
+gnome-terminal -- bash -c "python3 $HOME/Bureau/devchat/devchat.py; exec bash"
