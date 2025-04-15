@@ -33,4 +33,4 @@ fi
 clear
 
 echo "[*] Exécution de devchat.py..."
-python3 "$PYTHON_SCRIPT"
+gnome-terminal -- bash -c "python3 /home/amine/Bureau/devchat/devchat.py; exec bash"
