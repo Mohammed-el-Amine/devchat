@@ -14,7 +14,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 python3 -m venv dev-chat
 source dev-chat/bin/activate
 pip install --upgrade pip
-pip install llama-index llama-index-llms-ollama rich
+pip install llama-index llama-index-llms-ollama rich python-dotenv mysql-connector-python
 ```
 
 ---
@@ -38,12 +38,10 @@ ton-projet/
 
 ## 🧠 Description du script
 
-- Charge tous les fichiers dans `code_docs/`
-- Crée un index vectoriel (via `llama-index`)
 - Connecte ton modèle local via `ollama`
 - Utilise un prompt système spécialisé développeur
 - Permet de discuter directement via terminal
-
+- Sauvegarde tout les échange en base de donnée
 
 ---
 
@@ -72,3 +70,51 @@ python devchat.py
 - Interface graphique (`textual`, `gradio`, `streamlit`)
 - Historique de conversation sauvegardé
 - Analyse directe de code avec coloration syntaxique
+
+---
+
+## 🗄️ Créer la base de données et les tables nécessaires
+
+1. **Téléchargez le fichier SQL** [ici](create_chat_history_db.sql).
+
+2. **Connectez-vous à MySQL** en utilisant la commande suivante (en remplaçant `user` par votre utilisateur MySQL) :
+
+    ```bash
+    mysql -u user -p
+    ```
+
+    Il vous sera demandé de fournir le mot de passe associé à votre utilisateur MySQL.
+
+3. **Créez la base de données (si elle n'existe pas déjà)** :
+
+    ```sql
+    CREATE DATABASE chat_history;
+    ```
+
+4. **Sélectionnez la base de données** :
+
+    ```sql
+    USE chat_history;
+    ```
+
+5. **Exécutez le fichier SQL** pour créer les tables. Remplacez `/chemin/vers/le/fichier/create_chat_history_db.sql` par le chemin complet du fichier téléchargé :
+
+    ```sql
+    source /chemin/vers/le/fichier/create_chat_history_db.sql;
+    ```
+
+6. **Vérifiez que les tables sont créées** :
+
+    ```sql
+    SHOW TABLES;
+    ```
+
+7. **Quittez MySQL** lorsque vous avez terminé :
+
+    ```sql
+    exit;
+    ```
+
+---
+
+Maintenant, vous êtes prêt à utiliser le chat avec un historique sauvegardé dans MySQL !
