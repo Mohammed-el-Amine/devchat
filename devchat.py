@@ -88,7 +88,7 @@ while True:
                 messages.append({"role": "assistant", "content": msg[1]})
 
         # Ajouter le dernier message utilisateur à l'historique
-        user_input = Prompt.ask("[bold blue]Toi >[/bold blue]")
+        user_input = Prompt.ask(f"[bold blue]{db_user} >[/bold blue]")
         if user_input.lower() in ("exit", "quit", "byebye"):
             console.print("[bold yellow]À bientôt ![/bold yellow]")
             try:
