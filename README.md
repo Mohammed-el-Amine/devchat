@@ -3,7 +3,7 @@
 
 ## 🎯 Objectif
 
-Créer un petit **chat CLI local** spécialisé pour le développement avec un modèle Ollama local (`deepseek-r1:8b`), combiné à un RAG sur des documents de code.
+Créer un petit **chat CLI local** spécialisé pour le développement avec un modèle Ollama local (`deepseek-coder:6.7b`).
 
 ---
 
@@ -25,6 +25,7 @@ pip install llama-index llama-index-llms-ollama rich
 ton-projet/
 ├── devchat.py
 ├── lancement.sh
+├── README.md
 └── code_docs/
     ├── DOCKER.md
     ├── react_patterns.md
@@ -52,6 +53,7 @@ ton-projet/
 python devchat.py
 # OU
 ./lancement.sh
+# OU clique droit sur lancement.sh ---> éxécuter comme un programme ENJOY :)
 ```
 
 ---
