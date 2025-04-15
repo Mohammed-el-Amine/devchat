@@ -55,6 +55,8 @@ ton-projet/
 ```bash
 python3 devchat.py
 # OU
+# double clique sur lancement
+# OU
 ./lancement.sh
 # OU clique droit sur lancement.sh ---> éxécuter comme un programme ENJOY :)
 ```
