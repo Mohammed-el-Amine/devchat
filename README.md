@@ -28,6 +28,8 @@ ton-projet/
 ├── .env.example                  # renomé par .env et remmplir les informations
 ├── create_chat_history_db.sql
 ├── README.md
+├── wrapper.c
+├── lancement                     # éxécutable
 ├── .gitignore
 └── code_docs/
     ├── DOCKER.md
@@ -117,7 +119,18 @@ python3 devchat.py
     ```sql
     exit;
     ```
+Maintenant, vous êtes prêt à utiliser le chat avec un historique sauvegardé dans MySQL !
 
 ---
 
-Maintenant, vous êtes prêt à utiliser le chat avec un historique sauvegardé dans MySQL !
+
+## COMPILER LE FICHIER 'SH' AVEC DU 'C'
+
+
+
+```
+# Si gcc n'est pas installer:
+# sudo apt install gcc
+gcc -o /home/amine/Bureau/devchat/lancement wrapper.c   #création du fichier lancement executable (double clique)
+
+```
