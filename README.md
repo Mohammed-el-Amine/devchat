@@ -25,7 +25,10 @@ pip install llama-index llama-index-llms-ollama rich python-dotenv mysql-connect
 ton-projet/
 ├── devchat.py
 ├── lancement.sh
+├── .env.example                  # renomé par .env et remmplir les informations
+├── create_chat_history_db.sql
 ├── README.md
+├── .gitignore
 └── code_docs/
     ├── DOCKER.md
     ├── react_patterns.md
