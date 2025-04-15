@@ -10,6 +10,7 @@ load_dotenv()
 
 console = Console()
 MODEL_NAME = "deepseek-coder:6.7b"
+db_user = os.getenv("DB_USER")
 
 # Connexion à la BDD
 def connect_to_db():
@@ -71,7 +72,7 @@ if not check_model_installed(MODEL_NAME):
 # Initialiser le modèle Ollama
 llm = Ollama(model=MODEL_NAME)
 
-console.print("[bold green]Bienvenue Amine. Pose-moi n’importe quelle question, je ferai de mon mieux pour t'aider.[/bold green]")
+console.print(f"[bold green]Bienvenue {db_user}. Pose-moi n’importe quelle question, je ferai de mon mieux pour t'aider.[/bold green]")
 
 while True:
     try:
