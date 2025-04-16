@@ -90,7 +90,7 @@ while True:
         # Ajouter le dernier message utilisateur à l'historique
         user_input = Prompt.ask(f"[bold blue]{db_user} >[/bold blue]")
         if user_input.lower() in ("exit", "quit", "byebye"):
-            console.print("[bold yellow]À bientôt ![/bold yellow]")
+            console.print(f"[bold yellow]À bientôt {db_user} ![/bold yellow]")
             try:
                 console.print("[bold cyan]Arrêt du modèle Ollama...[/bold cyan]")
                 subprocess.run(["ollama", "stop", MODEL_NAME], check=True)
@@ -102,7 +102,27 @@ while True:
         messages.append({"role": "user", "content": user_input})
 
         # Obtenir la réponse du modèle
-        response = llm.complete(user_input)
+        # Construire une version texte de l'historique
+        historique_formate = ""
+        for msg in messages[:-1]:  # On ignore le dernier message qui est user_input actuel
+            role = "Utilisateur" if msg["role"] == "user" else "Assistant"
+            historique_formate += f"{role} : {msg['content']}\n"
+
+        # Construire le prompt final
+        prompt = (
+            f"Tu es un assistant développeur professionnel expert en développement web, DevOps, DevSecOps, pentesting\n"
+            f"Voici l'historique de la conversation :\n"
+            f"{historique_formate}\n"
+            f"Nouvelle question de l'utilisateur :\n"
+            f"Réponds de façon cohérente avec ce contexte:"
+            f"{user_input}\n\n"
+        )
+
+        # Debug : afficher le prompt envoyé
+        console.print(f"[italic cyan]Prompt envoyé au modèle :[/italic cyan]\n{prompt}")
+        
+        # Envoyer le prompt au modèle
+        response = llm.complete(prompt)
 
         # Vérifier si la réponse est une instance de CompletionResponse
         if isinstance(response, str):
